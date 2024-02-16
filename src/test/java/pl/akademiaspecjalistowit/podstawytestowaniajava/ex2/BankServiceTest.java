@@ -1,12 +1,33 @@
 package pl.akademiaspecjalistowit.podstawytestowaniajava.ex2;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.akademiaspecjalistowit.podstawytestowaniajava.ex2.money.Currency;
+import pl.akademiaspecjalistowit.podstawytestowaniajava.ex2.money.Money;
 
 class BankServiceTest {
 
+    private BankService bankServiceSuT;
+
+
+    @BeforeEach
+    void setUp() {
+        bankServiceSuT = new BankServicePln();
+    }
+
     @Test
     public void should_deposit_money_successfully() {
+        //given
+        Money money = new Money(Currency.PLN, 14.5);
 
+        //when
+        bankServiceSuT.depositMoney(money);
+
+        //then
+        assertThat(bankServiceSuT.checkBalance()).isNotEmpty();
+        assertThat(bankServiceSuT.checkBalance().get(0)).isEqualTo(money);
     }
 
     @Test
