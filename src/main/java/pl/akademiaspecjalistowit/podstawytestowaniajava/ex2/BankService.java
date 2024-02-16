@@ -1,5 +1,6 @@
 package pl.akademiaspecjalistowit.podstawytestowaniajava.ex2;
 
+import java.util.List;
 import pl.akademiaspecjalistowit.podstawytestowaniajava.ex2.money.Money;
 
 public interface BankService {
@@ -8,5 +9,5 @@ public interface BankService {
 
     void depositMoney(Money amount);
 
-    Money checkBalance();
+    List<Money> checkBalance();
 }
