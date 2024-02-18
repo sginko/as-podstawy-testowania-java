@@ -10,7 +10,7 @@ class ClientTest {
     void is_client_supported_payment_type() {
 
         //given
-        String name = "TestName";
+        String name = "Name";
         PaymentType paymentType = PaymentType.BLIK;
         Client client = new Client(name);
 
@@ -25,7 +25,7 @@ class ClientTest {
     void is_client_has_configuration() {
 
         //given
-        String name = "TestName";
+        String name = "Name";
         ClientConfiguration clientConfiguration;
 
         //when
@@ -39,7 +39,7 @@ class ClientTest {
     void is_client_has_name() {
 
         //given
-        String name = "TestName";
+        String name = "Name";
 
         //when
         Client client = new Client(name);

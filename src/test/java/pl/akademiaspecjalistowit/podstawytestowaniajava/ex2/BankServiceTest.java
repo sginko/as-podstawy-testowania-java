@@ -19,6 +19,7 @@ class BankServiceTest {
 
     @Test
     public void should_deposit_money_successfully() {
+
         //given
         Money money = new Money(Currency.PLN, 14.5);
 
