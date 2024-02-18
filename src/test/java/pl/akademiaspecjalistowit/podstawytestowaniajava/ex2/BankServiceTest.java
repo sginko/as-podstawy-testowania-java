@@ -13,9 +13,9 @@ class BankServiceTest {
 
 
     @BeforeEach
-    void setUp() {
-        bankServiceSuT = new BankServicePln();
-    }
+//    void setUp() {
+//        bankServiceSuT = new BankServicePln();
+//    }
 
     @Test
     public void should_deposit_money_successfully() {
