@@ -10,25 +10,25 @@ import java.util.Objects;
 
 public class BankServicePln implements BankService {
     private List<Money> accountBalance;
-    private Money accountMoney;
 
     public BankServicePln() {
         this.accountBalance = new ArrayList<>();
-        this.accountMoney = new Money(Currency.PLN, 0.0);
     }
 
     @Override
     public Money withdrawMoney(Money amount) {
-        if (accountMoney.amount < amount.amount) {
+        if (accountBalance.isEmpty()) {
+            throw new MoneyException("");
+        }
+        Money money = accountBalance.get(0);
+        if (amount.amount > money.amount) {
             throw new MoneyException("Insufficient money on deposit");
         }
         if (!amount.currency.equals(Currency.PLN)) {
             throw new MoneyException("Deposit money with different account currency");
         }
-//        accountMoney.amount = accountMoney.amount - amount.amount;
-        accountMoney = new Money(Currency.PLN, accountMoney.amount - amount.amount);
         accountBalance.clear();
-        accountBalance.add(accountMoney);
+        accountBalance.add(new Money(Currency.PLN, money.amount - amount.amount));
         return amount;
     }
 
@@ -40,10 +40,12 @@ public class BankServicePln implements BankService {
         if (!amount.currency.equals(Currency.PLN)) {
             throw new MoneyException("Deposit money with different account currency");
         }
-//        accountMoney.amount = accountMoney.amount + amount.amount;
-        accountMoney = new Money(Currency.PLN, accountMoney.amount + amount.amount);
+        if (accountBalance.isEmpty()) {
+            accountBalance.add(new Money(Currency.PLN, 0.0));
+        }
+        Money money = accountBalance.get(0);
         accountBalance.clear();
-        accountBalance.add(accountMoney);
+        accountBalance.add(new Money(Currency.PLN, money.amount + amount.amount));
     }
 
     @Override

@@ -22,9 +22,4 @@ public class Money {
         Money money = (Money) o;
         return currency == money.currency && Objects.equals(amount, money.amount);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(currency, amount);
-    }
 }

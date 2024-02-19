@@ -70,9 +70,10 @@ class BankServiceTest {
         Money withdrawMoney = new Money(Currency.PLN, 20.0);
 
         //when
-        bankServiceSuT.withdrawMoney(withdrawMoney);
+        Executable e = () -> bankServiceSuT.withdrawMoney(withdrawMoney);
 
         //then
+        assertThrows(MoneyException.class, e);
         assertThat(bankServiceSuT.checkBalance().get(0)).isEqualTo(money);
     }
 
@@ -82,10 +83,10 @@ class BankServiceTest {
         Money money = new Money(Currency.PLN, 5001.00);
 
         //when
-        bankServiceSuT.depositMoney(money);
+        Executable e = () -> bankServiceSuT.depositMoney(money);
 
         //then
-        assertThrows(MoneyException.class, () -> bankServiceSuT.depositMoney(money));
+        assertThrows(MoneyException.class, e);
     }
 
     @Test
@@ -96,10 +97,10 @@ class BankServiceTest {
         Money withdrawMoney = new Money(Currency.USD, 14.0);
 
         //when
-        bankServiceSuT.withdrawMoney(withdrawMoney);
+        Executable e = () -> bankServiceSuT.withdrawMoney(withdrawMoney);
 
         //then
-        assertThrows(MoneyException.class, () -> bankServiceSuT.withdrawMoney(withdrawMoney));
+        assertThrows(MoneyException.class, e);
     }
 
     @Test
@@ -108,9 +109,9 @@ class BankServiceTest {
         Money money = new Money(Currency.USD, 14.5);
 
         //when
-        bankServiceSuT.depositMoney(money);
+        Executable e = () -> bankServiceSuT.depositMoney(money);
 
         //then
-        assertThrows(MoneyException.class, () -> bankServiceSuT.depositMoney(money));
+        assertThrows(MoneyException.class, e);
     }
 }
