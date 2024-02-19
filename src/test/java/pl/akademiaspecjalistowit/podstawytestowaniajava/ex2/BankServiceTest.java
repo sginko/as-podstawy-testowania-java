@@ -13,7 +13,6 @@ import pl.akademiaspecjalistowit.podstawytestowaniajava.ex2.money.MoneyException
 import org.junit.jupiter.api.function.Executable;
 
 class BankServiceTest {
-
     private BankService bankServiceSuT;
 
     @BeforeEach
